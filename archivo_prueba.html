@@ -3,30 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Página Simple</title>
+    <title>Página Interactiva Mejorada</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-            background-color: #f0f8ff;
+            font-family: 'Arial', sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
         }
         button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
+            padding: 10px 15px;
+            background-color: #3498db;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
         button:hover {
-            background-color: #45a049;
+            background-color: #2980b9;
+        }
+        #colorBox {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            background-color: #e74c3c;
+            transition: background-color 0.5s;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #ecf0f1;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        input {
+            padding: 8px;
+            width: 70%;
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>¡Hola Mundo!</h1>
-    <p>Este es un ejemplo de página HTML minimalista.</p>
-    <button onclick="alert('¡Botón funcional!')">Haz clic aquí</button>
+    <h1>¡Página Interactiva!</h1>
+    <p>Ejemplo ampliado con JavaScript:</p>
+    
+    <!-- Sección de cambio de color -->
+    <div id="colorBox"></div>
+    <button onclick="cambiarColor()">Cambiar Color</button>
+    
+    <!-- Formulario para agregar elementos a una lista -->
+    <h2>Agregar a la lista:</h2>
+    <input type="text" id="itemInput" placeholder="Escribe algo...">
+    <button onclick="agregarItem()">Agregar</button>
+    <ul id="lista"></ul>
+    
+    <!-- Contador de clics -->
+    <p>Contador: <span id="contador">0</span></p>
+    <button onclick="incrementarContador()">Clic aquí</button>
+
+    <script>
+        // Cambia el color del cuadro
+        function cambiarColor() {
+            const colores = ["#e74c3c", "#2ecc71", "#9b59b6", "#f1c40f"];
+            const colorBox = document.getElementById("colorBox");
+            const colorActual = colorBox.style.backgroundColor;
+            let nuevoColor;
+            
+            do {
+                nuevoColor = colores[Math.floor(Math.random() * colores.length)];
+            } while (nuevoColor === colorActual);
+            
+            colorBox.style.backgroundColor = nuevoColor;
+        }
+
+        // Agrega items a la lista
+        function agregarItem() {
+            const input = document.getElementById("itemInput");
+            if (input.value.trim() === "") return;
+            
+            const lista = document.getElementById("lista");
+            const nuevoItem = document.createElement("li");
+            nuevoItem.textContent = input.value;
+            lista.appendChild(nuevoItem);
+            
+            input.value = ""; // Limpia el input
+        }
+
+        // Contador de clics
+        let contador = 0;
+        function incrementarContador() {
+            contador++;
+            document.getElementById("contador").textContent = contador;
+        }
+    </script>
 </body>
 </html>
