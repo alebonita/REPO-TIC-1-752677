@@ -1,2 +1,8 @@
 #ignoramos archivo "log_prueba.txt" en la raíz
 /log_prueba.txt
+
+#Ignorar archivos .log
+*.log
+
+#Ignorar la carpeta modules/
+modules/
